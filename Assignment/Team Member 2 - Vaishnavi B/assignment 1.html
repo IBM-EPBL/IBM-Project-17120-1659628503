@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+   
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=number] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background:plum;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #3b04aa;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<form action="/action_page.php" >
+  <div class="container">
+    <h1>LOGIN PAGE</h1>
+
+    <hr>
+
+    
+    <label for="text"><b>FirstName</b></label>
+    <input type="text" placeholder="Enter  FirstName" name="fname" id="fname" required>
+    <label for="text"><b>LastName</b></label>
+    <input type="text" placeholder="Enter  LastName" name="lname" id="lname" required>
+    <br/><hr>
+    <label for="qualification"><b>Qualification</b></label>
+
+  <select name="qualification" id="p">
+  <option value="sslc">SSLC</option>
+  <option value="hsc">HSC</option>
+  <option value="ug">UG</option>
+  <option value="PG">PG</option>
+  <option value="phd">P.h.d</option>
+ 
+</select>
+<br/><hr>
+    <label for="age"><b>DOB</b></label>
+    <input type="number" placeholder="Required " name="lname" id="lname" required>
+
+    <br/><hr>
+   
+
+
+  
+    <hr>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+    <button type="submit" class="registerbtn">submit</button>
+  </div>
+  
+  
+  
+</form>
+
+</body>
+</html>
