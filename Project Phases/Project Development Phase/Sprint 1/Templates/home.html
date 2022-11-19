@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Red Drops</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup" style="padding-left: 20px">
+          <!-- <form action="/request" class="sign-in-form" method="post">
+            <h2 class="title">Donor Details</h2>
+            <input type="submit" class="btn" value="Request" />
+          </form> -->
+          <h3>What Is Plasma?</h3>
+          <p>
+            Plasma is the liquid part of your blood. You may have heard of red
+            blood cells, white blood cells, and platelets. But plasma is also
+            part of your blood. One of its jobs is keeping your blood pressure
+            in a healthy range. It also carries important proteins, minerals,
+            nutrients, and hormones to the right places in your body.
+          </p>
+          <h3>What Is Plasma Made Of?</h3>
+          <p>
+            Plasma is made up of about 90% water. It also has salts and enzymes.
+            And it has antibodies that help fight infection, plus proteins
+            called albumin and fibrinogen. Plasma makes up the biggest part of
+            your blood: about 55%. Even though blood appears red when you see it
+            outside the body, plasma itself is a pale yellow color.
+          </p>
+          <h3>What Is the Function of Blood Plasma?</h3>
+          <p>
+            Plasma helps carry proteins, hormones, and nutrients to different
+            cells in your body. Growth hormones that help your muscles and bones
+            grow. Clotting factors that help you stop bleeding when you get a
+            cut. Nutrients such as potassium and sodium that help your cells
+            work Plasma also helps your body maintain normal blood pressure and
+            blood volume levels and get rid of the chemical waste from cells.
+          </p>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div
+          class="panel left-panel"
+          style="padding-left: 15px; text-align: left"
+        >
+          <div class="abs-btn">
+            <button type="button" onclick="logout()">Logout</button>
+          </div>
+          <div class="content" style="align-items: 0">
+            <!-- <h3 style="font-size: 15px">REQUEST</h3> -->
+            <!-- <p style="font-size: 12px">
+              Donor should be in the age group of 18 to 65 years. Donor should
+              be in the age group of 18 to 65 years. The Donor Should not be
+              less than 45 Kilograms.
+            </p> -->
+            <button
+              type="button"
+              class="btn transparent"
+              style="
+                border: 0;
+                width: 45%;
+                height: 50%;
+                position: fixed;
+                left: 0;
+                top: 0;
+                font-size: 30px;
+              "
+              onclick="req()"
+            >
+              Request
+            </button>
+            <p></p>
+            <!-- <h3 style="font-size: 15px">DONOR</h3> -->
+            <!-- <p style="font-size: 12px">
+              Donor should be in the age group of 18 to 65 years. Donor should
+              be in the age group of 18 to 65 years. The Donor Should not be
+              less than 45 Kilograms.
+            </p> -->
+            <button
+              type="button"
+              class="btn transparent"
+              style="
+                border: 0;
+                width: 45%;
+                height: 50%;
+                position: fixed;
+                left: 0;
+                font-size: 30px;
+              "
+              onclick="donor()"
+            >
+              Donor
+            </button>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3></h3>
+            <p></p>
+            <button class="btn transparent" id="sign-in-btn"></button>
+          </div>
+          <img
+            src="{{ url_for('static', filename='./img/ui.PNG') }}"
+            class="image"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.watsonAssistantChatOptions = {
+        integrationID: "1a469467-45c9-4c6b-ad0f-a07c9e914f8d", // The ID of this integration.
+        region: "au-syd", // The region your integration is hosted in.
+        serviceInstanceID: "2e3b4d73-24c8-4d5d-b00f-a0353ce93044", // The ID of your service instance.
+        onLoad: function (instance) {
+          instance.render();
+        },
+      };
+      setTimeout(function () {
+        const t = document.createElement("script");
+        t.src =
+          "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+          (window.watsonAssistantChatOptions.clientVersion || "latest") +
+          "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+      });
+
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+      const sign_up_btn = document.querySelector("#sign-up-btn");
+      const container = document.querySelector(".container");
+
+      sign_up_btn.addEventListener("click", () => {
+        container.classList.add("sign-up-mode");
+      });
+
+      sign_in_btn.addEventListener("click", () => {
+        container.classList.remove("sign-up-mode");
+      });
+      function ValidateEmail() {
+        var em = document.getElementById("j1").value;
+        var validRegex =
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!validRegex.test(em)) {
+          document.getElementById("oi").innerHTML = "INVALID";
+          document.getElementById("oi").style = "color:red";
+        } else {
+          document.getElementById("oi").innerHTML = "VALID";
+          document.getElementById("oi").style = "color:green";
+        }
+      }
+      function back() {
+        window.location.href = "home";
+      }
+      function logout() {
+        window.location.href = "login";
+      }
+      function donor() {
+        window.location.href = "donor";
+      }
+      function req() {
+        window.location.href = "request";
+      }
+    </script>
+  </body>
+</html>
