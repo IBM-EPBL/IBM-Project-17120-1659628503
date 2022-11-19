@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Red Drops</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="login" class="sign-in-form" method="post">
+            <h2 class="title">Log in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                required
+              />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+              />
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+          </form>
+          <form action="/register" class="sign-up-form" method="post">
+            <h2 class="title">Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                onblur="Validateu()"
+                id="u7"
+                name="username"
+                required
+              />
+              <div id="k8"></div>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                placeholder="Email"
+                onblur="ValidateEmail()"
+                id="j1"
+                name="email"
+                required
+              />
+              <div id="oi"></div>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                id="pw1"
+                name="password"
+                required
+              />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                id="pw2"
+                onchange="cnp()"
+                required
+              />
+              <div id="r1"></div>
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here ?</h3>
+            <p>Register with just your email and start availing the app !</p>
+            <button class="btn transparent" id="sign-up-btn">Sign up</button>
+          </div>
+          <img
+            src="{{ url_for('static', filename='./img/ui.PNG') }}"
+            class="image"
+            alt=""
+          />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Already registered ?</h3>
+            <p>Login and start availing the app!</p>
+            <button class="btn transparent" id="sign-in-btn">Log in</button>
+          </div>
+          <img
+            src="{{ url_for('static', filename='./img/ui.PNG') }}"
+            class="image"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+      const sign_up_btn = document.querySelector("#sign-up-btn");
+      const container = document.querySelector(".container");
+
+      sign_up_btn.addEventListener("click", () => {
+        container.classList.add("sign-up-mode");
+      });
+
+      sign_in_btn.addEventListener("click", () => {
+        container.classList.remove("sign-up-mode");
+      });
+      function cnp() {
+        var p1 = document.getElementById("pw1").value;
+        var p2 = document.getElementById("pw2").value;
+        if (p1 != p2) {
+          document.getElementById("r1").innerHTML = "MISMATCHED";
+          document.getElementById("r1").style = "color:red";
+        } else {
+          document.getElementById("r1").innerHTML = " MATCHED";
+          document.getElementById("r1").style = "color:green";
+        }
+      }
+      function ValidateEmail() {
+        var em = document.getElementById("j1").value;
+        var validRegex =
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!validRegex.test(em)) {
+          document.getElementById("oi").innerHTML = "INVALID";
+          document.getElementById("oi").style = "color:red";
+        } else {
+          document.getElementById("oi").innerHTML = "VALID";
+          document.getElementById("oi").style = "color:green";
+        }
+      }
+      function Validateu() {
+        var e = document.getElementById("u7").value;
+
+        if (e == "") {
+          document.getElementById("k8").innerHTML = "INVALID";
+          document.getElementById("k8").style = "color:red";
+        } else {
+          document.getElementById("k8").innerHTML = "VALID";
+          document.getElementById("k8").style = "color:green";
+        }
+      }
+    </script>
+  </body>
+</html>
