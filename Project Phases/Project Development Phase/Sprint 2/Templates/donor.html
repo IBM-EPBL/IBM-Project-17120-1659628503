@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Red Drops</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <!-- <form action="login" class="sign-in-form">
+            <h2 class="title">Donor Details</h2>
+            <div class="hor-scrollview">
+              <table>
+                {% for req in activereq: %}
+                <tr>
+                  <td>{{req[6]}}</td>
+                  <td>{{req[1]}}</td>
+                  <td>{{req[2]}}</td>
+                  <td>{{req[3]}}</td>
+                  <td>{{req[4]}}</td>
+                  <td>{{req[5]}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </form> -->
+          <form action="/regdonor" class="sign-in-form" method="post">
+            <h2 class="title">Donor Details</h2>
+            {% if don==0 %}
+            <div class="ver-scrollview">
+              <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder=" Name" name="name" required />
+              </div>
+              <div class="input-field">
+                <i class="fas fa-heart"></i>
+                <select
+                  type="text"
+                  placeholder="Blood Group"
+                  name="bloodgroup"
+                  required
+                >
+                  <option disabled selected></option>
+                  <option disabled class="placeholder">
+                    Patient's Blood Group]
+                  </option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <i class="fas fa-calendar"></i>
+                <input
+                  size="10"
+                  type="date"
+                  placeholder="DOB"
+                  name="dob"
+                  required
+                />
+              </div>
+              <div class="input-field">
+                <i class="fas fa-phone"></i>
+                <input
+                  type="tel"
+                  placeholder="Phone"
+                  name="phone"
+                  pattern="+[6-9]{1}[0-9]{9}"
+                  required
+                />
+              </div>
+              <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" name="email" required />
+                <div id="oi"></div>
+              </div>
+              <div class="input-field">
+                <i class="fa-solid fa-house"></i>
+                <input
+                  type="text"
+                  placeholder="Address"
+                  name="address"
+                  required
+                />
+              </div>
+            </div>
+            <input type="submit" class="btn" value="Register Request" />
+            {% else %} {% for i in don: %}
+            <p>Name: {{i[6]}}</p>
+            <p>BloodGroup: {{i[1]}}</p>
+            <p>DOB: {{i[2]}}</p>
+            <p>Phone: {{i[3]}}</p>
+            <p>Email: {{i[4]}}</p>
+            <p>Address: {{i[5]}}</p>
+            {% endfor%} {% endif%}
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div
+          class="panel left-panel"
+          style="padding-left: 15px; text-align: left"
+        >
+          <div class="abs-btn">
+            <button type="button" onclick="back()">Back</button>
+            <button type="button" onclick="logout()">Logout</button>
+          </div>
+          <div class="content" style="align-items: 0">
+            <h3 style="font-size: 15px">REQUIREMENTS</h3>
+            <p style="font-size: 12px">
+              Donor should be in the age group of 18 to 65 years. Donor should
+              be in the age group of 18 to 65 years. The Donor Should not be
+              less than 45 Kilograms.
+            </p>
+            <h3 style="font-size: 15px">DONOR FREQUENCY</h3>
+            <p style="font-size: 12px">
+              Men can donate safely once in every three months while women can
+              donate every four months.
+            </p>
+            <h3 style="font-size: 15px">BEFORE DONATIONS</h3>
+            <p style="font-size: 12px">
+              Get the Dish on Nutrition Have iron-rich foods, such as red meat,
+              fish, poultry, beans, spinach, iron-fortified cereals or raisins.
+              Be Well Rested and Hydrate Please bring your donor card, driver's
+              license or two other forms of identification. Medication List
+              We'll need to know about all prescription and over-the-counter
+              medications you're taking. Wear a shirt with sleeves that you can
+              roll up above your elbows.
+            </p>
+            <h3 style="font-size: 15px">AFTER DONATIONS</h3>
+            <p style="font-size: 12px; width: 400px">
+              Drink an extra four (8 oz.) glasses of liquids and avoid alcohol
+              over the next 24 hours. Don’t do any heavy lifting or vigorous
+              exercise for the rest of the day. If the needle site starts to
+              bleed, apply pressure and raise your arm straight up for 5-10
+              minutes or until bleeding stops. If you experience dizziness or
+              lightheadedness, stop what you’re doing and sit down or lie down
+              until you feel better; avoid performing any activity where
+              fainting may lead to injury for at least 24 hours. Keep eating
+              iron-rich foods. If you donate frequently, be sure to take
+              multivitamins with iron to ensure you continue to replenish your
+              iron stores before your next donation.
+            </p>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3></h3>
+            <p></p>
+            <button class="btn transparent" id="sign-in-btn"></button>
+          </div>
+          <img
+            src="{{ url_for('static', filename='./img/ui.PNG') }}"
+            class="image"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const sign_in_btn = document.querySelector("#sign-in-btn");
+      const sign_up_btn = document.querySelector("#sign-up-btn");
+      const container = document.querySelector(".container");
+
+      sign_up_btn.addEventListener("click", () => {
+        container.classList.add("sign-up-mode");
+      });
+
+      sign_in_btn.addEventListener("click", () => {
+        container.classList.remove("sign-up-mode");
+      });
+      function ValidateEmail() {
+        var em = document.getElementById("j1").value;
+        var validRegex =
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!validRegex.test(em)) {
+          document.getElementById("oi").innerHTML = "INVALID";
+          document.getElementById("oi").style = "color:red";
+        } else {
+          document.getElementById("oi").innerHTML = "VALID";
+          document.getElementById("oi").style = "color:green";
+        }
+      }
+      function back() {
+        window.location.href = "home";
+      }
+      function logout() {
+        window.location.href = "login";
+      }
+    </script>
+  </body>
+</html>
